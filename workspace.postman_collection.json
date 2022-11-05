@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "201a20e4-6dfa-466b-af26-00dc4b8eb7e4",
+		"name": "workspace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24184061"
+	},
+	"item": [
+		{
+			"name": "workspace_login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.octoperf.com/public/users/login?username=boujja5@icloud.com&password=Tariq21967",
+					"protocol": "https",
+					"host": [
+						"api",
+						"octoperf",
+						"com"
+					],
+					"path": [
+						"public",
+						"users",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "boujja5@icloud.com"
+						},
+						{
+							"key": "password",
+							"value": "Tariq21967"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
