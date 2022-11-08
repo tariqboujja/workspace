@@ -8,6 +8,27 @@
 	"item": [
 		{
 			"name": "workspace_login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//JavaScript",
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData)",
+							"",
+							"//save Token in a new environment variable",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token);",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -33,6 +54,130 @@
 							"key": "password",
 							"value": "Tariq21967"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_member_of",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"//add verification for status code",
+							"pm.test(\"Status code is 200 for [member_of] request\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var responseData = pm.response.json();",
+							"console.log(responseData[1]);",
+							"",
+							"pm.test(\"Verify name equals to<Personal Account> for [member_of] request\",function(){",
+							"    pm.expect(responseData[1].name).to.equal('Personal Account');",
+							"});",
+							"",
+							"//Task",
+							"//add tests to validate id, validate UserId, description",
+							"",
+							"pm.test(\"validate id equals to <id> for [member_of] request\", function(){",
+							"    pm.expect(responseData[1].id).to.equal(\"qlz3U4QBXL0WroF_eVu_\");",
+							"})",
+							"pm.test(\"validate id equals to <userId> for [member_of] request\", function(){",
+							"    pm.expect(responseData[1].userId).to.equal(\"NVhEboABW2JrFgny5yjg\");",
+							"})",
+							"pm.test(\"Verify name equals to<description> for [member_of] request\",function(){",
+							"    pm.expect(responseData[1].description).to.equal(\"User will create multiple accounts\");",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api.octoperf.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9,ar;q=0.8"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJvY3RvcGVyZiIsImlkIjoiTlZoRWJvQUJXMkpyRmdueTV5amciLCJleHAiOjE2Njc5Mzk5MzIsImlhdCI6MTY2Nzg1MzUzMiwiaGFzaCI6ImY3NjYxMTQ1NjEzZjZkYzYyZTNmNmNmMDkzMzQ0N2FkIn0.obRGvS5M4IIPr_htdF25LMh5zRMwXaq5tcgjhaiFRGs",
+						"disabled": true
+					},
+					{
+						"key": "cookie",
+						"value": "_ga=GA1.2.96161993.1651117408; __stripe_mid=1e1f62ba-c5e3-47ea-bf1b-8568abd7f25f3a78ee; slaask-token-5a5eed8e193aa4456766852b0d3bdd64=gp3pwcnztn6hcwsmbpnbchdfz3axyxk9ndn4b4z5u5xm; _gid=GA1.2.1008370577.1667839673; __stripe_sid=1ba5a0aa-1405-4408-b551-8f24f124baece72104"
+					},
+					{
+						"key": "referer",
+						"value": "https://api.octoperf.com/app/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+					}
+				],
+				"url": {
+					"raw": "https://api.octoperf.com/workspaces/member-of",
+					"protocol": "https",
+					"host": [
+						"api",
+						"octoperf",
+						"com"
+					],
+					"path": [
+						"workspaces",
+						"member-of"
 					]
 				}
 			},
